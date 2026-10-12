@@ -1,0 +1,21 @@
+The plugin implements StanzaFilter::incomingStanza() and ApplicationInfoAccessor, and stores lists under appHomeDir(ConfigLocation)/lowernah/. Returning a null options widget is already handled by Psi; the plugin still shows a short QLabel with the config path.
+
+What it does
+
+Incoming <message> stanzas from a MUC occupant (room@server/nick) are checked against that room’s list. On a match, text nodes in <body> and XHTML-IM <html> are lowercased; attributes are left alone. The filter always returns false so Psi keeps processing the stanza.
+
+Config
+
+Put one file per room in Psi’s config directory, named after the room JID:
+
+
+<configdir>/lowernah/room@conference.example.com
+One nickname or occupant JID per line (# comments allowed). The directory is created on enable and watched with QFileSystemWatcher so edits apply without restarting Psi.
+
+Build
+
+
+mkdir build && cd build
+cmake ..
+make
+Install liblowernah.so into Psi’s plugin directory and enable LowerNah in settings.

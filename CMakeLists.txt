@@ -7,7 +7,7 @@ set(CMAKE_AUTOMOC ON)
 find_package(Qt5 REQUIRED COMPONENTS Core Gui Widgets Xml)
 
 # Path to <psi source>/plugins/include
-set(PSI_PLUGIN_INCLUDE "" CACHE PATH "Directory with psiplugin.h")
+set(PSI_PLUGIN_INCLUDE "${CMAKE_CURRENT_SOURCE_DIR}/psi/src/plugins/include" CACHE PATH "Directory with psiplugin.h")
 
 add_library(lowernah MODULE lowernah.cpp)
 target_include_directories(lowernah PRIVATE ${PSI_PLUGIN_INCLUDE})
